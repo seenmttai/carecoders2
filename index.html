@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="diagnostic-pages.css">
+  <link rel="stylesheet" href="hero-section.css">
   <script type="importmap">
   {
     "imports": {
@@ -33,17 +34,23 @@
     <span id="status-text">Checking API...</span>
   </div>
   
-  <header class="hero">
-    <video id="hero-video" autoplay loop muted>
-      <source src="https://assets.mixkit.co/videos/preview/mixkit-medical-scan-of-a-human-brain-rotating-10541-large.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="overlay"></div>
-    <div class="logo">
-      <svg width="200" height="50" viewBox="0 0 200 50">
-        <path class="logo-path" d="M20,10 Q30,5 40,10 L50,20 Q55,30 50,40 L40,50 Q30,55 20,50 L10,40 Q5,30 10,20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-        <text x="25" y="33" class="logo-text" fill="currentColor" font-family="Poppins" font-weight="600" font-size="16">Diagno+</text>
-      </svg>
+  <!-- New Hero Section with Lottie Animation -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="logo-container">
+          <img src="assets/logo.jpg" alt="Diagno+ Logo" class="hero-logo">
+        </div>
+        <h1>AI-Powered Medical Diagnostics</h1>
+        <p>Revolutionizing healthcare with cutting-edge artificial intelligence for accurate, efficient, and accessible diagnostic solutions.</p>
+        <div class="hero-buttons">
+          <a href="#diagnose" class="primary-btn">Get Started</a>
+          <a href="#services" class="secondary-btn">Explore Services</a>
+        </div>
+      </div>
+      <div class="hero-animation">
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_jcsfwbvi.json" background="transparent" speed="1" loop autoplay></lottie-player>
+      </div>
     </div>
   </header>
 
@@ -87,20 +94,20 @@
   </div>
 
   <section id="testimonials" class="section testimonials-section">
-    <h2>Patient Testimonials</h2>
-    <p>Success stories from our diagnostic services</p>
+    <h2>Insights from Healthcare Professionals</h2>
+    <p>At Diagno Plus+, we're building solutions with and for the healthcare community. To understand real needs, we surveyed doctors across India to learn how they perceive AI in diagnosis, their concerns, and their expectations from tech-driven tools. Here's what they shared with us—captured through insights and data visualizations below.</p>
     
     <div class="testimonials-carousel">
       <div class="testimonial-slide">
         <div class="testimonial-content">
           <div class="testimonial-image">
-            <img src="https://via.placeholder.com/200x200.png?text=Chart+1" alt="Chart 1" width="200" height="200" style="border-radius: 50%;">
+            <img src="assets/piechart1.jpeg" alt="AI Perception Chart" style="border-radius: 50%;">
           </div>
           <div class="testimonial-text">
             <blockquote>
-              "This is a placeholder for chart 1."
+              "AI systems will enhance diagnostic accuracy and efficiency, not replace medical professionals."
             </blockquote>
-            <cite>- Chart 1 Data</cite>
+            <cite>- Dr. Sharma, Neurologist</cite>
           </div>
         </div>
       </div>
@@ -108,27 +115,13 @@
       <div class="testimonial-slide">
         <div class="testimonial-content">
           <div class="testimonial-image">
-            <img src="https://via.placeholder.com/200x200.png?text=Chart+2" alt="Chart 2" width="200" height="200" style="border-radius: 50%;">
+            <img src="assets/piechart2.jpeg" alt="AI Adoption Chart" style="border-radius: 50%;">
           </div>
           <div class="testimonial-text">
             <blockquote>
-              "This is a placeholder for chart 2."
+              "The integration of AI in diagnostic workflows can significantly reduce turnaround time for critical cases."
             </blockquote>
-            <cite>- Chart 2 Data</cite>
-          </div>
-        </div>
-      </div>
-      
-      <div class="testimonial-slide">
-        <div class="testimonial-content">
-          <div class="testimonial-image">
-            <img src="https://via.placeholder.com/200x200.png?text=Chart+3" alt="Chart 3" width="200" height="200" style="border-radius: 50%;">
-          </div>
-          <div class="testimonial-text">
-            <blockquote>
-              "This is a placeholder for chart 3."
-            </blockquote>
-            <cite>- Chart 3 Data</cite>
+            <cite>- Dr. Patel, Radiologist</cite>
           </div>
         </div>
       </div>
@@ -140,7 +133,6 @@
       </button>
       <div class="carousel-dots testimonial-dots">
         <span class="dot active"></span>
-        <span class="dot"></span>
         <span class="dot"></span>
       </div>
       <button class="next-btn testimonial-next">
@@ -156,41 +148,33 @@
     <div class="services-carousel">
       <div class="service-slide">
         <div class="service-card">
-          <i class="fas fa-microchip"></i>
-          <h3>AI-Powered Analysis</h3>
-          <p>Our proprietary algorithms provide 99.7% diagnostic accuracy, surpassing traditional methods.</p>
+          <i class="fas fa-desktop"></i>
+          <h3>Dedicated Portal with Easy Interface</h3>
+          <p>User-friendly dashboard designed for effortless navigation and seamless diagnostics.</p>
         </div>
       </div>
       
       <div class="service-slide">
         <div class="service-card">
-          <i class="fas fa-stopwatch"></i>
-          <h3>Rapid Results</h3>
-          <p>Receive comprehensive diagnostic reports within minutes, not days or weeks.</p>
+          <i class="fas fa-bolt"></i>
+          <h3>Fast and High Accuracy</h3>
+          <p>AI-powered engine ensures rapid results with clinically validated precision.</p>
         </div>
       </div>
       
       <div class="service-slide">
         <div class="service-card">
-          <i class="fas fa-globe"></i>
-          <h3>Remote Consultations</h3>
-          <p>Connect with specialists worldwide for second opinions and treatment recommendations.</p>
+          <i class="fas fa-coins"></i>
+          <h3>Inexpensive and Reliable Diagnosis</h3>
+          <p>Affordable solutions without compromising on quality or reliability.</p>
         </div>
       </div>
       
       <div class="service-slide">
         <div class="service-card">
-          <i class="fas fa-user-shield"></i>
-          <h3>Data Privacy</h3>
-          <p>HIPAA-compliant platform with end-to-end encryption for maximum data security.</p>
-        </div>
-      </div>
-      
-      <div class="service-slide">
-        <div class="service-card">
-          <i class="fas fa-history"></i>
-          <h3>Longitudinal Tracking</h3>
-          <p>Monitor health changes over time with our advanced progression analysis tools.</p>
+          <i class="fas fa-file-medical-alt"></i>
+          <h3>Instant Report Generation</h3>
+          <p>Get comprehensive diagnostic reports within seconds.</p>
         </div>
       </div>
     </div>
@@ -201,7 +185,6 @@
       </button>
       <div class="carousel-dots service-dots">
         <span class="dot active"></span>
-        <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
@@ -219,7 +202,7 @@
     <div class="diagnostic-options">
       <div class="diagnostic-card" data-option="brain">
         <div class="card-icon">
-          <img src="brain-diagnosis.png" width="80" height="80">
+          <img src="assets/mri1.jpeg" width="80" height="80">
         </div>
         <h3><strong>Brain</strong> Diagnosis</h3>
         <div class="required-label">Requires MRI brain scan images</div>
@@ -228,7 +211,7 @@
       
       <div class="diagnostic-card" data-option="lung">
         <div class="card-icon">
-          <img src="lung-diagnosis.png" width="80" height="80">
+          <img src="assets/ct1.png" width="80" height="80">
         </div>
         <h3><strong>Lung Cancer</h3>
         <div class="required-label">Requires CT scan images</div>
@@ -237,7 +220,7 @@
       
       <div class="diagnostic-card" data-option="retina">
         <div class="card-icon">
-          <img src="retina-diagnosis.png"  width="80" height="80">
+          <img src="assets/retinal1.jpeg"  width="80" height="80">
         </div>
         <h3>Diabetic Retinopathy</h3>
         <div class="required-label">Requires retinal scan images</div>
@@ -305,15 +288,15 @@
       <div class="contact-info">
         <div class="info-item">
           <i class="fas fa-map-marker-alt"></i>
-          <p>123 Medical Drive, Healthcare City, CA 90210</p>
+          <p>Noida, Uttar Pradesh, India</p>
         </div>
         <div class="info-item">
           <i class="fas fa-phone"></i>
-          <p>(800) 555-DIAG</p>
+          <p>9897084892</p>
         </div>
         <div class="info-item">
           <i class="fas fa-envelope"></i>
-          <p>info@diagnoplus.com</p>
+          <p>pranaybioinfo@gmail.com</p>
         </div>
         <div class="social-links">
           <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
@@ -366,10 +349,7 @@
   <footer>
     <div class="footer-content">
       <div class="footer-logo">
-        <svg width="150" height="40" viewBox="0 0 200 50">
-          <path class="logo-path" d="M20,10 Q30,5 40,10 L50,20 Q55,30 50,40 L40,50 Q30,55 20,50 L10,40 Q5,30 10,20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-          <text x="25" y="33" class="logo-text" fill="currentColor" font-family="Poppins" font-weight="600" font-size="16">Diagno+</text>
-        </svg>
+        <img src="assets/logo.jpg" alt="Diagno+ Logo" width="150">
       </div>
       <div class="footer-links">
         <div class="footer-column">
@@ -414,5 +394,6 @@
   <script src="script.js" type="module"></script>
   <script src="services-autoscroll.js" type="module"></script>
   <script src="api-status.js" type="module"></script>
+  <script src="lottie-loader.js"></script>
 </body>
 </html>

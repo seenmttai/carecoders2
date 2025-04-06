@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="diagnostic-pages.css">
-
+  <!-- PDF JS Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     .upload-container {
@@ -20,7 +20,7 @@
       box-shadow: 0 5px 25px var(--card-shadow);
       border: 1px solid var(--card-border);
     }
-
+    
     .upload-area {
       border: 2px dashed var(--primary-color);
       border-radius: 10px;
@@ -31,22 +31,22 @@
       transition: all 0.3s ease;
       background-color: var(--bg-light);
     }
-
+    
     .upload-area:hover {
       border-color: var(--primary-light);
       background-color: var(--bg-color);
     }
-
+    
     .upload-icon {
       font-size: 50px;
       color: var(--primary-color);
       margin-bottom: 20px;
     }
-
+    
     .upload-text {
       margin-bottom: 20px;
     }
-
+    
     .upload-input {
       position: absolute;
       top: 0;
@@ -56,24 +56,24 @@
       opacity: 0;
       cursor: pointer;
     }
-
+    
     .requirements {
       background-color: var(--bg-light);
       border-radius: 10px;
       padding: 20px;
       margin: 30px 0;
     }
-
+    
     .requirements ul {
       list-style-type: none;
       padding-left: 20px;
     }
-
+    
     .requirements li {
       margin-bottom: 10px;
       position: relative;
     }
-
+    
     .requirements li:before {
       content: "•";
       color: var(--primary-color);
@@ -81,13 +81,13 @@
       position: absolute;
       left: -15px;
     }
-
+    
     .eye-image {
       max-width: 300px;
       margin: 0 auto 30px;
       display: block;
     }
-
+    
     .sample-image {
       border-radius: 10px;
       overflow: hidden;
@@ -98,24 +98,24 @@
       height: 120px;
       object-fit: cover;
     }
-
+    
     .samples {
       text-align: center;
       margin: 30px 0;
     }
-
+    
     .severity-scale {
       display: flex;
       justify-content: space-between;
       margin: 30px 0;
       padding: 0 20px;
     }
-
+    
     .severity-level {
       text-align: center;
       width: 18%;
     }
-
+    
     .severity-dot {
       height: 15px;
       width: 15px;
@@ -123,116 +123,116 @@
       display: inline-block;
       margin-bottom: 5px;
     }
-
+    
     .level-0 {
       background-color: #28a745;
     }
-
+    
     .level-1 {
       background-color: #93c54b;
     }
-
+    
     .level-2 {
       background-color: #f0ad4e;
     }
-
+    
     .level-3 {
       background-color: #d9534f;
     }
-
+    
     .level-4 {
       background-color: #9c27b0;
     }
-
+    
     .severity-title {
       font-size: 0.8rem;
       font-weight: 600;
       color: var(--text-color);
     }
-
+    
     .severity-desc {
       font-size: 0.7rem;
       color: var(--text-light);
     }
-
+    
     .analysis-results {
       margin-top: 30px;
     }
-
+    
     .result-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
+    
     .visualization img {
       width: 200px;
       height: 200px;
       border-radius: 10px;
     }
-
+    
     .prediction-main {
       font-size: 1.2rem;
       font-weight: 600;
     }
-
+    
     .confidence-value {
       font-size: 1.2rem;
       color: var(--text-light);
     }
-
+    
     .prediction-scores ul {
       list-style-type: none;
       padding: 0;
     }
-
+    
     .prediction-scores li {
       margin-bottom: 10px;
     }
-
+    
     .score-bar {
       width: 100%;
       height: 10px;
       background-color: var(--bg-light);
       border-radius: 5px;
     }
-
+    
     .score-fill {
       height: 100%;
       background-color: var(--primary-color);
       border-radius: 5px;
     }
-
+    
     .highest-score {
       font-weight: bold;
     }
-
+    
     .patient-info-form {
       background-color: var(--bg-light);
       border-radius: 10px;
       padding: 20px;
       margin-bottom: 30px;
     }
-
+    
     .form-row {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
       margin-bottom: 15px;
     }
-
+    
     .form-group {
       flex: 1;
       min-width: 200px;
     }
-
+    
     .form-group label {
       display: block;
       margin-bottom: 5px;
       font-weight: 500;
       color: var(--text-color);
     }
-
+    
     .form-group input {
       width: 100%;
       padding: 10px;
@@ -241,31 +241,31 @@
       background-color: var(--bg-color);
       color: var(--text-color);
     }
-
+    
     .terms-checkbox {
       display: flex;
       align-items: flex-start;
       margin: 15px 0;
       cursor: pointer;
     }
-
+    
     .terms-checkbox input {
       margin-right: 10px;
       margin-top: 4px;
     }
-
+    
     .terms-link {
       color: var(--primary-color);
       cursor: pointer;
       text-decoration: underline;
     }
-
+    
     .report-actions {
       display: flex;
       gap: 15px;
       margin-top: 20px;
     }
-
+    
     .download-btn {
       display: inline-flex;
       align-items: center;
@@ -278,7 +278,7 @@
       cursor: pointer;
       font-weight: 500;
     }
-
+    
     .download-btn:hover {
       background-color: var(--info-color);
     }
@@ -308,7 +308,7 @@
   <section class="section">
     <h2>Diabetic Retinopathy Screening</h2>
     <p>Upload your retinal scan images for AI-powered detection of diabetic retinopathy</p>
-
+    
     <div class="upload-container">
       <svg class="eye-image" viewBox="0 0 200 200" width="200" height="200">
         <ellipse cx="100" cy="100" rx="90" ry="50" fill="none" stroke="var(--primary-color)" stroke-width="3"/>
@@ -316,7 +316,7 @@
         <circle cx="100" cy="100" r="15" fill="none" stroke="var(--primary-color)" stroke-width="2"/>
         <path d="M20,100 C20,100 50,140 100,140 C150,140 180,100 180,100 C180,100 150,60 100,60 C50,60 20,100 20,100 Z" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-dasharray="5,3"/>
       </svg>
-
+      
       <h3>Enter Patient Information</h3>
       <div class="patient-info-form">
         <div class="form-row">
@@ -334,9 +334,9 @@
           </div>
         </div>
       </div>
-
+      
       <h3>Upload Retinal Scan Images</h3>
-
+      
       <div class="severity-scale">
         <div class="severity-level">
           <span class="severity-dot level-0"></span>
@@ -364,7 +364,7 @@
           <div class="severity-desc">Abnormal vessel growth</div>
         </div>
       </div>
-
+      
       <div class="requirements">
         <h4><i class="fas fa-list-check"></i> Requirements</h4>
         <ul>
@@ -375,14 +375,7 @@
           <li>45° or 50° field of view centered on the macula or optic disc</li>
         </ul>
       </div>
-
-      <div class="samples">
-        <h4>Sample acceptable images:</h4>
-        <img src="https://www.med-ed.virginia.edu/courses/eye/images/Eye%20Photos/Normal/Normal%20Fundus.jpg" class="sample-image" alt="Sample retinal image 1">
-        <img src="https://www.retinalscreening.co.uk/wp-content/uploads/sites/105/2017/05/micro.jpg" class="sample-image" alt="Sample retinal image 2">
-        <img src="https://www.retinalscreening.co.uk/wp-content/uploads/sites/105/2017/05/blot-1.jpg" class="sample-image" alt="Sample retinal image 3">
-      </div>
-
+      
       <div class="upload-area">
         <i class="fas fa-eye upload-icon"></i>
         <div class="upload-text">
@@ -391,18 +384,18 @@
         </div>
         <input type="file" class="upload-input" multiple accept=".jpg,.jpeg,.png,.tiff">
       </div>
-
+      
       <p class="note"><i class="fas fa-lock"></i> Your data is secure and encrypted. We comply with HIPAA regulations and never share your medical information.</p>
-
+      
       <label class="terms-checkbox">
         <input type="checkbox" id="terms-checkbox" required>
         <span>I accept the <span class="terms-link" id="open-terms">terms and conditions</span> and consent to storing my data in the cloud</span>
       </label>
-
+      
       <button type="button" class="submit-btn" disabled id="analyze-btn">
         Analyze Retinal Images
       </button>
-
+      
       <div id="analysis-results" class="analysis-results" style="display: none;">
         <h4>Analysis Results</h4>
         <div class="result-content">
@@ -416,11 +409,11 @@
               <span id="confidence-value" class="confidence-value"></span>
             </div>
             <div class="prediction-scores" id="confidence-scores">
-
+              <!-- Will be populated with scores -->
             </div>
           </div>
         </div>
-
+        
         <div class="report-actions">
           <button id="download-report" class="download-btn">
             <i class="fas fa-file-pdf"></i> Download Report
@@ -483,7 +476,7 @@
   <script src="supabase-client.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-
+      // Theme switcher
       const themeSwitch = document.getElementById('theme-switch');
       themeSwitch.addEventListener('change', function() {
         if(this.checked) {
@@ -495,12 +488,14 @@
         }
       });
 
+      // Check for saved theme preference
       const currentTheme = localStorage.getItem('theme');
       if (currentTheme === 'dark') {
         themeSwitch.checked = true;
         document.documentElement.setAttribute('data-theme', 'dark');
       }
-
+      
+      // Patient info and file upload handling
       const patientName = document.getElementById('patient-name');
       const patientId = document.getElementById('patient-id');
       const patientAge = document.getElementById('patient-age');
@@ -514,62 +509,67 @@
       const confidenceValue = document.getElementById('confidence-value');
       const confidenceScores = document.getElementById('confidence-scores');
       const downloadReportBtn = document.getElementById('download-report');
-
+      
       let selectedFile = null;
       let diagnosisResult = null;
-
+      
+      // Terms and conditions trigger
       document.getElementById('open-terms').addEventListener('click', function() {
         termsAndConditions.showModal();
       });
-
+      
+      // Check if form is valid to enable analyze button
       function validateForm() {
         const isPatientInfoValid = patientName.value.trim() !== '' && 
                                   patientId.value.trim() !== '' && 
                                   patientAge.value !== '';
         const isTermsAccepted = termsCheckbox.checked;
         const isFileSelected = selectedFile !== null;
-
+        
         analyzeBtn.disabled = !(isPatientInfoValid && isTermsAccepted && isFileSelected);
       }
-
+      
+      // Add event listeners for form validation
       [patientName, patientId, patientAge, termsCheckbox].forEach(input => {
         input.addEventListener('input', validateForm);
       });
-
+      
+      // File upload handling
       uploadArea.addEventListener('dragover', function(e) {
         e.preventDefault();
         this.style.borderColor = 'var(--primary-light)';
         this.style.backgroundColor = 'rgba(42, 199, 140, 0.05)';
       });
-
+      
       uploadArea.addEventListener('dragleave', function(e) {
         e.preventDefault();
         this.style.borderColor = '';
         this.style.backgroundColor = '';
       });
-
+      
       uploadArea.addEventListener('drop', function(e) {
         e.preventDefault();
         this.style.borderColor = '';
         this.style.backgroundColor = '';
-
+        
         const files = e.dataTransfer.files;
         handleFiles(files);
       });
-
+      
       uploadInput.addEventListener('change', function() {
         handleFiles(this.files);
       });
-
+      
       function handleFiles(files) {
         if (files.length > 0) {
           selectedFile = files[0];
-
+          
+          // Update the upload area to show selected files
           let fileList = '';
           for (let i = 0; i < files.length; i++) {
             fileList += `<p><i class="fas fa-file-medical"></i> ${files[i].name}</p>`;
           }
-
+          
           uploadArea.innerHTML = `
             <div class="upload-text">
               <h4>Files Selected (${files.length})</h4>
@@ -578,47 +578,51 @@
             </div>
             <input type="file" class="upload-input" multiple accept=".jpg,.jpeg,.png,.tiff">
           `;
-
+          
+          // Enable the analyze button
           validateForm();
-
+          
+          // Re-attach the event listener to the new input element
           document.querySelector('.upload-input').addEventListener('change', function() {
             handleFiles(this.files);
           });
         }
       }
-
+      
       analyzeBtn.addEventListener('click', async function() {
         if (!selectedFile) {
           alert('Please select an image file first.');
           return;
         }
-
+        
         analyzeBtn.disabled = true;
         analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
-
+        
         const formData = new FormData();
         formData.append('file', selectedFile);
-
+        
         try {
           const response = await fetch('http://localhost:5000/api/retina', {
             method: 'POST',
             body: formData
           });
-
+          
           if (!response.ok) {
             const errorData = await response.json();
             throw new Error(errorData.error || 'Failed to analyze image');
           }
-
+          
           const data = await response.json();
-
+          
+          // Display results
           analysisResults.style.display = 'block';
           resultImage.src = data.visualization_image || '';
           predictionValue.textContent = data.prediction;
-
+          
           const mainConfidence = data.confidence_scores[data.prediction];
           confidenceValue.textContent = `(${mainConfidence.toFixed(1)}%)`;
-
+          
+          // Update confidence scores
           let scoresHTML = '<h4>Confidence Scores</h4><ul>';
           for (const [className, score] of Object.entries(data.confidence_scores)) {
             const isHighest = className === data.prediction;
@@ -632,11 +636,13 @@
           }
           scoresHTML += '</ul>';
           confidenceScores.innerHTML = scoresHTML;
-
+          
+          // Store diagnosis result
           diagnosisResult = data;
-
+          
+          // Scroll to results
           analysisResults.scrollIntoView({ behavior: 'smooth' });
-
+          
         } catch (error) {
           alert(`Error: ${error.message}`);
           console.error('Analysis error:', error);
@@ -645,21 +651,24 @@
           analyzeBtn.innerHTML = 'Analyze Retinal Images';
         }
       });
-
+      
+      // Generate and download PDF report
       downloadReportBtn.addEventListener('click', async function() {
         if (!diagnosisResult) return;
-
+        
         try {
           downloadReportBtn.disabled = true;
           downloadReportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Report...';
-
+          
+          // Collect patient data
           const patientData = {
             name: patientName.value,
             patientId: patientId.value,
             age: patientAge.value,
             testType: 'Retinal Scan Analysis'
           };
-
+          
+          // Collect diagnosis data
           const diagnosisData = {
             testType: 'Retinal Scan Analysis',
             prediction: diagnosisResult.prediction,
@@ -667,15 +676,19 @@
             visualizationImage: diagnosisResult.visualization_image,
             metadata: diagnosisResult.metadata || 'No additional information available for this condition.'
           };
-
+          
+          // Generate the PDF
           const pdfDoc = generatePDFReport(patientData, diagnosisData);
-
+          
+          // Save PDF to blob for uploading to Supabase
           const pdfBlob = pdfDoc.output('blob');
-
+          
+          // Upload to Supabase
           await uploadReportToSupabase(pdfBlob, patientData);
-
+          
+          // Save PDF locally
           pdfDoc.save(`Diagno+_Retina_Report_${patientId.value}.pdf`);
-
+          
           alert('Report saved successfully and securely stored in the cloud.');
         } catch (error) {
           console.error('Error generating report:', error);
