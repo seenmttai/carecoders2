@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagno+ | Advanced Medical Diagnostics</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="services-autoscroll.css">
+  <link rel="stylesheet" href="api-integration.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="diagnostic-pages.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "chart.js": "https://cdn.jsdelivr.net/npm/chart.js@4.3.0/+esm"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="theme-toggle">
+    <i class="fas fa-sun"></i>
+    <label class="switch">
+      <input type="checkbox" id="theme-switch">
+      <span class="slider round"></span>
+    </label>
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <div id="api-status" class="api-status">
+    <span id="status-indicator" class="status-indicator"></span>
+    <span id="status-text">Checking API...</span>
+  </div>
+  
+  <header class="hero">
+    <video id="hero-video" autoplay loop muted>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-medical-scan-of-a-human-brain-rotating-10541-large.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+    <div class="logo">
+      <svg width="200" height="50" viewBox="0 0 200 50">
+        <path class="logo-path" d="M20,10 Q30,5 40,10 L50,20 Q55,30 50,40 L40,50 Q30,55 20,50 L10,40 Q5,30 10,20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <text x="25" y="33" class="logo-text" fill="currentColor" font-family="Poppins" font-weight="600" font-size="16">Diagno+</text>
+      </svg>
+    </div>
+  </header>
+
+  <nav class="sticky-nav">
+    <div class="nav-container">
+      <button class="nav-button" data-section="diagnose">Diagnose</button>
+      <button class="nav-button" data-section="testimonials">Testimonials</button>
+      <button class="nav-button" data-section="services">Our Services</button>
+      <button class="nav-button" data-section="partners">Our Partners</button>
+      <button class="nav-button" data-section="contact">Contact Us</button>
+    </div>
+  </nav>
+
+  <div class="chat-button">
+    <button id="chat-btn">
+      <i class="fas fa-comment-medical"></i>
+      <span>Chat with us</span>
+    </button>
+  </div>
+
+  <div class="chat-container" id="chat-container">
+    <div class="chat-header">
+      <h3>Diagno+ Assistant</h3>
+      <button id="close-chat">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="message bot">
+        <div class="message-content">
+          <p>Hello! I'm the Diagno+ AI assistant. How can I help you with your medical diagnostics needs today?</p>
+        </div>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Type your message...">
+      <button id="send-message">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <section id="testimonials" class="section testimonials-section">
+    <h2>Patient Testimonials</h2>
+    <p>Success stories from our diagnostic services</p>
+    
+    <div class="testimonials-carousel">
+      <div class="testimonial-slide">
+        <div class="testimonial-content">
+          <div class="testimonial-image">
+            <img src="https://via.placeholder.com/200x200.png?text=Chart+1" alt="Chart 1" width="200" height="200" style="border-radius: 50%;">
+          </div>
+          <div class="testimonial-text">
+            <blockquote>
+              "This is a placeholder for chart 1."
+            </blockquote>
+            <cite>- Chart 1 Data</cite>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-slide">
+        <div class="testimonial-content">
+          <div class="testimonial-image">
+            <img src="https://via.placeholder.com/200x200.png?text=Chart+2" alt="Chart 2" width="200" height="200" style="border-radius: 50%;">
+          </div>
+          <div class="testimonial-text">
+            <blockquote>
+              "This is a placeholder for chart 2."
+            </blockquote>
+            <cite>- Chart 2 Data</cite>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-slide">
+        <div class="testimonial-content">
+          <div class="testimonial-image">
+            <img src="https://via.placeholder.com/200x200.png?text=Chart+3" alt="Chart 3" width="200" height="200" style="border-radius: 50%;">
+          </div>
+          <div class="testimonial-text">
+            <blockquote>
+              "This is a placeholder for chart 3."
+            </blockquote>
+            <cite>- Chart 3 Data</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="carousel-controls">
+      <button class="prev-btn testimonial-prev">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="carousel-dots testimonial-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <button class="next-btn testimonial-next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <section id="services" class="section services-section">
+    <h2>Our Services</h2>
+    <p>Cutting-edge diagnostic solutions powered by AI</p>
+    
+    <div class="services-carousel">
+      <div class="service-slide">
+        <div class="service-card">
+          <i class="fas fa-microchip"></i>
+          <h3>AI-Powered Analysis</h3>
+          <p>Our proprietary algorithms provide 99.7% diagnostic accuracy, surpassing traditional methods.</p>
+        </div>
+      </div>
+      
+      <div class="service-slide">
+        <div class="service-card">
+          <i class="fas fa-stopwatch"></i>
+          <h3>Rapid Results</h3>
+          <p>Receive comprehensive diagnostic reports within minutes, not days or weeks.</p>
+        </div>
+      </div>
+      
+      <div class="service-slide">
+        <div class="service-card">
+          <i class="fas fa-globe"></i>
+          <h3>Remote Consultations</h3>
+          <p>Connect with specialists worldwide for second opinions and treatment recommendations.</p>
+        </div>
+      </div>
+      
+      <div class="service-slide">
+        <div class="service-card">
+          <i class="fas fa-user-shield"></i>
+          <h3>Data Privacy</h3>
+          <p>HIPAA-compliant platform with end-to-end encryption for maximum data security.</p>
+        </div>
+      </div>
+      
+      <div class="service-slide">
+        <div class="service-card">
+          <i class="fas fa-history"></i>
+          <h3>Longitudinal Tracking</h3>
+          <p>Monitor health changes over time with our advanced progression analysis tools.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="carousel-controls">
+      <button class="prev-btn service-prev">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="carousel-dots service-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <button class="next-btn service-next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <section id="diagnose" class="section diagnose-section">
+    <h2>Advanced Diagnostic Solutions</h2>
+    <p>Select a diagnostic service to begin your health assessment journey.</p>
+    
+    <div class="diagnostic-options">
+      <div class="diagnostic-card" data-option="brain">
+        <div class="card-icon">
+          <img src="brain-diagnosis.png" width="80" height="80">
+        </div>
+        <h3><strong>Brain</strong> Diagnosis</h3>
+        <div class="required-label">Requires MRI brain scan images</div>
+        <a href="brain.html" class="diagnose-button">Start Diagnosis</a>
+      </div>
+      
+      <div class="diagnostic-card" data-option="lung">
+        <div class="card-icon">
+          <img src="lung-diagnosis.png" width="80" height="80">
+        </div>
+        <h3><strong>Lung Cancer</h3>
+        <div class="required-label">Requires CT scan images</div>
+        <a href="lung.html" class="diagnose-button">Start Diagnosis</a>
+      </div>
+      
+      <div class="diagnostic-card" data-option="retina">
+        <div class="card-icon">
+          <img src="retina-diagnosis.png"  width="80" height="80">
+        </div>
+        <h3>Diabetic Retinopathy</h3>
+        <div class="required-label">Requires retinal scan images</div>
+        <a href="retina.html" class="diagnose-button">Start Diagnosis</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="partners" class="section partners-section">
+    <h2>Our Partners</h2>
+    <p>Working with leading healthcare institutions worldwide</p>
+    
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-logo">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M30,50 L70,50 M50,30 L50,70" stroke="currentColor" stroke-width="4"/>
+          </svg>
+        </div>
+        <h3>MediTech Solutions</h3>
+        <p>Pioneer in medical imaging technology</p>
+      </div>
+      
+      <div class="partner-card">
+        <div class="partner-logo">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <rect x="20" y="20" width="60" height="60" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M35,50 L65,50 M50,35 L50,65" stroke="currentColor" stroke-width="4"/>
+          </svg>
+        </div>
+        <h3>Global Health Institute</h3>
+        <p>Research leader in diagnostic methodologies</p>
+      </div>
+      
+      <div class="partner-card">
+        <div class="partner-logo">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <polygon points="50,20 80,50 50,80 20,50" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>NeuroScan Innovations</h3>
+        <p>Specializing in advanced neurological diagnostics</p>
+      </div>
+      
+      <div class="partner-card">
+        <div class="partner-logo">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <path d="M20,50 C20,30 40,20 50,20 C60,20 80,30 80,50 C80,70 60,80 50,80 C40,80 20,70 20,50 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Vision Care Alliance</h3>
+        <p>Dedicated to ocular health and diagnostics</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact-section">
+    <h2>Contact Us</h2>
+    <p>Get in touch with our team of experts</p>
+    
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <p>123 Medical Drive, Healthcare City, CA 90210</p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-phone"></i>
+          <p>(800) 555-DIAG</p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <p>info@diagnoplus.com</p>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <form action="https://formsubmit.co/your@email.com" method="POST">
+          <input type="hidden" name="_next" value="https://diagnoplus.com/thanks.html">
+          
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="general">General Inquiry</option>
+              <option value="support">Technical Support</option>
+              <option value="partnership">Partnership Opportunity</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <svg width="150" height="40" viewBox="0 0 200 50">
+          <path class="logo-path" d="M20,10 Q30,5 40,10 L50,20 Q55,30 50,40 L40,50 Q30,55 20,50 L10,40 Q5,30 10,20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="25" y="33" class="logo-text" fill="currentColor" font-family="Poppins" font-weight="600" font-size="16">Diagno+</text>
+        </svg>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Diagnostic Services</h4>
+          <ul>
+            <li><a href="brain.html">Brain Diagnosis</a></li>
+            <li><a href="lung.html">Lung Cancer Screening</a></li>
+            <li><a href="retina.html">Diabetic Retinopathy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#news">News & Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#blog">Medical Blog</a></li>
+            <li><a href="#research">Research Papers</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+            <li><a href="#hipaa">HIPAA Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 Diagno+. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" type="module"></script>
+  <script src="services-autoscroll.js" type="module"></script>
+  <script src="api-status.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | Diagno+</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .thank-you-container {
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .check-icon {
+      width: 100px;
+      height: 100px;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      animation: scale-in 0.5s ease-out;
+    }
+    
+    .check-icon i {
+      color: white;
+      font-size: 50px;
+    }
+    
+    .thank-you-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--text-color);
+      animation: fade-in 0.8s ease-out;
+    }
+    
+    .thank-you-message {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 40px;
+      color: var(--text-light);
+      animation: fade-in 1s ease-out;
+    }
+    
+    .home-button {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: var(--button-radius);
+      font-weight: 500;
+      transition: all 0.3s ease;
+      animation: fade-in 1.2s ease-out;
+    }
+    
+    .home-button:hover {
+      background-color: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    @keyframes scale-in {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-toggle">
+    <i class="fas fa-sun"></i>
+    <label class="switch">
+      <input type="checkbox" id="theme-switch">
+      <span class="slider round"></span>
+    </label>
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <svg width="200" height="50" viewBox="0 0 200 50">
+          <path class="logo-path" d="M20,10 Q30,5 40,10 L50,20 Q55,30 50,40 L40,50 Q30,55 20,50 L10,40 Q5,30 10,20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="25" y="33" class="logo-text" fill="currentColor" font-family="Poppins" font-weight="600" font-size="16">Diagno+</text>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <div class="thank-you-container">
+    <div class="check-icon">
+      <i class="fas fa-check"></i>
+    </div>
+    <h1 class="thank-you-title">Thank You!</h1>
+    <p class="thank-you-message">Your message has been received. Our team will get back to you within 24 hours. We appreciate your interest in Diagno+ medical diagnostic services.</p>
+    <a href="index.html" class="home-button">Back to Home</a>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <svg width="150" height="40" viewBox="0 0 200 50">
+          <path class="logo-path" d="M20,10 Q30,5 40,10 L50,20 Q55,30 50,40 L40,50 Q30,55 20,50 L10,40 Q5,30 10,20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="25" y="33" class="logo-text" fill="currentColor" font-family="Poppins" font-weight="600" font-size="16">Diagno+</text>
+        </svg>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Diagnostic Services</h4>
+          <ul>
+            <li><a href="brain.html">Brain Diagnosis</a></li>
+            <li><a href="lung.html">Lung Cancer Screening</a></li>
+            <li><a href="retina.html">Diabetic Retinopathy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#news">News & Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#blog">Medical Blog</a></li>
+            <li><a href="#research">Research Papers</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+            <li><a href="#hipaa">HIPAA Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 Diagno+. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Theme switcher
+      const themeSwitch = document.getElementById('theme-switch');
+      themeSwitch.addEventListener('change', function() {
+        if(this.checked) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+
+      // Check for saved theme preference
+      const currentTheme = localStorage.getItem('theme');
+      if (currentTheme === 'dark') {
+        themeSwitch.checked = true;
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    });
+  </script>
+</body>
+</html>
+

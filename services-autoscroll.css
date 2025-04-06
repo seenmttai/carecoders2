@@ -1,0 +1,18 @@
+/* New CSS for continuous autoscroll in Our Services section */
+.services-carousel {
+  scroll-snap-type: none !important;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+
+.services-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide manual controls as continuous autoscroll is now enabled */
+.service-prev,
+.service-next,
+.service-dots {
+  display: none;
+}

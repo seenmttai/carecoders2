@@ -1,0 +1,23 @@
+/* Diagnostic Cards Specific Styles */
+.diagnose-button {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: var(--button-radius);
+  font-weight: 500;
+  margin-top: auto;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 60px);
+  transition: none;
+}
+
+.diagnose-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateX(-50%);
+  box-shadow: none;
+}

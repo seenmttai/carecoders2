@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain Diagnosis | Diagno+</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="diagnostic-pages.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    .upload-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: 0 5px 25px var(--card-shadow);
+      border: 1px solid var(--card-border);
+    }
+
+    .upload-area {
+      border: 2px dashed var(--primary-color);
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+      margin: 20px 0;
+      position: relative;
+      transition: all 0.3s ease;
+      background-color: var(--bg-light);
+    }
+
+    .upload-area:hover {
+      border-color: var(--primary-light);
+      background-color: var(--bg-color);
+    }
+
+    .upload-icon {
+      font-size: 50px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .upload-text {
+      margin-bottom: 20px;
+    }
+
+    .upload-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .requirements {
+      background-color: var(--bg-light);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 30px 0;
+    }
+
+    .requirements ul {
+      list-style-type: none;
+      padding-left: 20px;
+    }
+
+    .requirements li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .requirements li:before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      position: absolute;
+      left: -15px;
+    }
+
+    .brain-image {
+      max-width: 300px;
+      margin: 0 auto 30px;
+      display: block;
+    }
+
+    .sample-image {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 15px var(--shadow-color);
+      display: inline-block;
+      margin: 10px;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .samples {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .analysis-results {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: var(--bg-light);
+      border-radius: 10px;
+    }
+
+    .result-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .visualization {
+      flex-basis: 40%;
+      margin-right: 20px;
+    }
+
+    .prediction-details {
+      flex-basis: 60%;
+    }
+
+    .prediction-main {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .prediction-label {
+      font-weight: bold;
+    }
+
+    .prediction-value {
+      font-size: 18px;
+    }
+
+    .confidence-value {
+      font-size: 16px;
+      color: var(--primary-color);
+    }
+
+    .prediction-scores {
+      margin-top: 20px;
+    }
+
+    .prediction-scores ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .prediction-scores li {
+      margin-bottom: 10px;
+    }
+
+    .class-name {
+      font-weight: bold;
+    }
+
+    .score-value {
+      font-size: 16px;
+    }
+
+    .score-bar {
+      width: 100%;
+      height: 10px;
+      background-color: var(--bg-light);
+      border-radius: 10px;
+      margin-top: 5px;
+    }
+
+    .score-fill {
+      height: 100%;
+      background-color: var(--primary-color);
+      border-radius: 10px;
+    }
+
+    .highest-score {
+      font-weight: bold;
+    }
+
+    .patient-info-form {
+      background-color: var(--bg-light);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .terms-checkbox {
+      display: flex;
+      align-items: flex-start;
+      margin: 15px 0;
+      cursor: pointer;
+    }
+
+    .terms-checkbox input {
+      margin-right: 10px;
+      margin-top: 4px;
+    }
+
+    .terms-link {
+      color: var(--primary-color);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .report-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--secondary-color);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: var(--button-radius);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .download-btn:hover {
+      background-color: var(--info-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="theme-toggle">
+    <i class="fas fa-sun"></i>
+    <label class="switch">
+      <input type="checkbox" id="theme-switch">
+      <span class="slider round"></span>
+    </label>
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <svg width="200" height="50" viewBox="0 0 200 50">
+          <path class="logo-path" d="M20,10 Q30,5 40,10 L50,20 Q55,30 50,40 L40,50 Q30,55 20,50 L10,40 Q5,30 10,20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="25" y="33" class="logo-text" fill="currentColor" font-family="Poppins" font-weight="600" font-size="16">Diagno+</text>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>Brain Diagnosis</h2>
+    <p>Upload your MRI scan images for AI-powered neurological analysis</p>
+
+    <div class="upload-container">
+      <svg class="brain-image" viewBox="0 0 200 200" width="200" height="200">
+        <path d="M100,20 C130,20 150,40 160,60 C170,80 170,100 160,120 C150,140 130,160 100,160 C70,160 50,140 40,120 C30,100 30,80 40,60 C50,40 70,20 100,20 Z" fill="none" stroke="var(--primary-color)" stroke-width="3"/>
+        <path d="M100,40 C120,40 130,50 130,70 C130,90 120,100 100,100 C80,100 70,90 70,70 C70,50 80,40 100,40 Z" fill="none" stroke="var(--primary-color)" stroke-width="2"/>
+        <path d="M60,80 C50,90 50,110 60,120 M140,80 C150,90 150,110 140,120" fill="none" stroke="var(--primary-color)" stroke-width="2"/>
+        <path d="M80,120 C90,130 110,130 120,120" fill="none" stroke="var(--primary-color)" stroke-width="2"/>
+      </svg>
+
+      <h3>Enter Patient Information</h3>
+      <div class="patient-info-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="patient-name">Patient Name</label>
+            <input type="text" id="patient-name" placeholder="Full Name" required>
+          </div>
+          <div class="form-group">
+            <label for="patient-id">Patient ID</label>
+            <input type="text" id="patient-id" placeholder="ID Number" required>
+          </div>
+          <div class="form-group">
+            <label for="patient-age">Patient Age</label>
+            <input type="number" id="patient-age" min="0" max="120" placeholder="Age in Years" required>
+          </div>
+        </div>
+      </div>
+
+      <h3>Upload MRI Scan Images</h3>
+      <div class="requirements">
+        <h4><i class="fas fa-list-check"></i> Requirements</h4>
+        <ul>
+          <li>T1-weighted or T2-weighted MRI scans</li>
+          <li>DICOM, NIFTI, or high-resolution JPG/PNG format</li>
+          <li>Recent scans (preferably within the last 3 months)</li>
+          <li>Complete series of axial views</li>
+          <li>Must include all brain regions for comprehensive analysis</li>
+        </ul>
+      </div>
+
+      <div class="samples">
+        <h4>Sample acceptable images:</h4>
+        <img src="https://www.researchgate.net/profile/Rohini-Pawar-2/publication/264971863/figure/fig3/AS:668345586806789@1536355625485/Original-MRI-Brain-Image-in-axial-view.png" class="sample-image" alt="Sample MRI image 1">
+        <img src="https://www.researchgate.net/publication/325109753/figure/fig5/AS:668517202206725@1536396727885/Examples-of-the-obtained-MRI-brain-scans-in-our-dataset-showing-the-difference-between.png" class="sample-image" alt="Sample MRI image 2">
+        <img src="https://media.istockphoto.com/id/1307142267/photo/human-brain-axial-mri-scan.jpg?s=612x612&w=0&k=20&c=KtgUA8azeHSVZpCZYl0Gx9MRhC5I1QcDZ_dygLQNmMk=" class="sample-image" alt="Sample MRI image 3">
+      </div>
+
+      <div class="upload-area">
+        <i class="fas fa-brain upload-icon"></i>
+        <div class="upload-text">
+          <h4>Drag & Drop MRI Files Here</h4>
+          <p>or click to browse your files</p>
+        </div>
+        <input type="file" class="upload-input" multiple accept=".dcm,.nii,.jpg,.jpeg,.png">
+      </div>
+
+      <p class="note"><i class="fas fa-lock"></i> Your data is secure and encrypted. We comply with HIPAA regulations and never share your medical information.</p>
+
+      <label class="terms-checkbox">
+        <input type="checkbox" id="terms-checkbox" required>
+        <span>I accept the <span class="terms-link" id="open-terms">terms and conditions</span> and consent to storing my data in the cloud</span>
+      </label>
+
+      <button type="button" class="submit-btn" disabled id="analyze-btn">
+        Analyze MRI Images
+      </button>
+
+      <div id="analysis-results" class="analysis-results" style="display: none;">
+        <h4>Analysis Results</h4>
+        <div class="result-content">
+          <div class="visualization">
+            <img id="result-image" alt="Analysis Visualization">
+          </div>
+          <div class="prediction-details">
+            <div class="prediction-main">
+              <span class="prediction-label">Diagnosis:</span>
+              <span id="prediction-value" class="prediction-value"></span>
+              <span id="confidence-value" class="confidence-value"></span>
+            </div>
+            <div class="prediction-scores" id="confidence-scores">
+
+            </div>
+          </div>
+        </div>
+
+        <div class="report-actions">
+          <button id="download-report" class="download-btn">
+            <i class="fas fa-file-pdf"></i> Download Report
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <svg width="150" height="40" viewBox="0 0 200 50">
+          <path class="logo-path" d="M20,10 Q30,5 40,10 L50,20 Q55,30 50,40 L40,50 Q30,55 20,50 L10,40 Q5,30 10,20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="25" y="33" class="logo-text" fill="currentColor" font-family="Poppins" font-weight="600" font-size="16">Diagno+</text>
+        </svg>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Diagnostic Services</h4>
+          <ul>
+            <li><a href="brain.html">Brain Diagnosis</a></li>
+            <li><a href="lung.html">Lung Cancer Screening</a></li>
+            <li><a href="retina.html">Diabetic Retinopathy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#news">News & Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#blog">Medical Blog</a></li>
+            <li><a href="#research">Research Papers</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+            <li><a href="#hipaa">HIPAA Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 Diagno+. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="terms-conditions.js"></script>
+  <script src="pdf-generator.js"></script>
+  <script src="supabase-client.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      const themeSwitch = document.getElementById('theme-switch');
+      themeSwitch.addEventListener('change', function() {
+        if(this.checked) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+
+      const currentTheme = localStorage.getItem('theme');
+      if (currentTheme === 'dark') {
+        themeSwitch.checked = true;
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+
+      const patientName = document.getElementById('patient-name');
+      const patientId = document.getElementById('patient-id');
+      const patientAge = document.getElementById('patient-age');
+      const termsCheckbox = document.getElementById('terms-checkbox');
+      const uploadInput = document.querySelector('.upload-input');
+      const uploadArea = document.querySelector('.upload-area');
+      const analyzeBtn = document.getElementById('analyze-btn');
+      const analysisResults = document.getElementById('analysis-results');
+      const resultImage = document.getElementById('result-image');
+      const predictionValue = document.getElementById('prediction-value');
+      const confidenceValue = document.getElementById('confidence-value');
+      const confidenceScores = document.getElementById('confidence-scores');
+      const downloadReportBtn = document.getElementById('download-report');
+
+      let selectedFile = null;
+      let diagnosisResult = null;
+
+      document.getElementById('open-terms').addEventListener('click', function() {
+        termsAndConditions.showModal();
+      });
+
+      function validateForm() {
+        const isPatientInfoValid = patientName.value.trim() !== '' && 
+                                  patientId.value.trim() !== '' && 
+                                  patientAge.value !== '';
+        const isTermsAccepted = termsCheckbox.checked;
+        const isFileSelected = selectedFile !== null;
+
+        analyzeBtn.disabled = !(isPatientInfoValid && isTermsAccepted && isFileSelected);
+      }
+
+      [patientName, patientId, patientAge, termsCheckbox].forEach(input => {
+        input.addEventListener('input', validateForm);
+      });
+
+      uploadArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.style.borderColor = 'var(--primary-light)';
+        this.style.backgroundColor = 'rgba(42, 199, 140, 0.05)';
+      });
+
+      uploadArea.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        this.style.borderColor = '';
+        this.style.backgroundColor = '';
+      });
+
+      uploadArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.style.borderColor = '';
+        this.style.backgroundColor = '';
+
+        const files = e.dataTransfer.files;
+        handleFiles(files);
+      });
+
+      uploadInput.addEventListener('change', function() {
+        handleFiles(this.files);
+      });
+
+      function handleFiles(files) {
+        if (files.length > 0) {
+          selectedFile = files[0];
+
+          let fileList = '';
+          for (let i = 0; i < files.length; i++) {
+            fileList += `<p><i class="fas fa-file-medical"></i> ${files[i].name}</p>`;
+          }
+
+          uploadArea.innerHTML = `
+            <div class="upload-text">
+              <h4>Files Selected (${files.length})</h4>
+              ${fileList}
+              <p>Click or drag to change selection</p>
+            </div>
+            <input type="file" class="upload-input" multiple accept=".dcm,.nii,.jpg,.jpeg,.png">
+          `;
+
+          document.querySelector('.upload-input').addEventListener('change', function() {
+            handleFiles(this.files);
+          });
+
+          validateForm();
+        }
+      }
+
+      analyzeBtn.addEventListener('click', async function() {
+        if (!selectedFile || !patientName.value || !patientId.value || !patientAge.value || !termsCheckbox.checked) {
+          alert('Please complete all required fields and accept the terms.');
+          return;
+        }
+
+        analyzeBtn.disabled = true;
+        analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+
+        try {
+          const response = await fetch('http://localhost:5000/api/brain', {
+            method: 'POST',
+            body: formData
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to analyze image');
+          }
+
+          const data = await response.json();
+          diagnosisResult = data;
+
+          analysisResults.style.display = 'block';
+          resultImage.src = data.visualization_image || '';
+          predictionValue.textContent = data.prediction;
+
+          const mainConfidence = data.confidence_scores[data.prediction];
+          confidenceValue.textContent = `(${mainConfidence.toFixed(1)}%)`;
+
+          let scoresHTML = '<h4>Confidence Scores</h4><ul>';
+          for (const [className, score] of Object.entries(data.confidence_scores)) {
+            const isHighest = className === data.prediction;
+            scoresHTML += `<li class="${isHighest ? 'highest-score' : ''}">
+              <span class="class-name">${className}:</span> 
+              <span class="score-value">${score.toFixed(1)}%</span>
+              <div class="score-bar">
+                <div class="score-fill" style="width: ${score}%;"></div>
+              </div>
+            </li>`;
+          }
+          scoresHTML += '</ul>';
+          confidenceScores.innerHTML = scoresHTML;
+
+          analysisResults.scrollIntoView({ behavior: 'smooth' });
+
+        } catch (error) {
+          alert(`Error: ${error.message}`);
+          console.error('Analysis error:', error);
+        } finally {
+          analyzeBtn.disabled = false;
+          analyzeBtn.innerHTML = 'Analyze MRI Images';
+        }
+      });
+
+      downloadReportBtn.addEventListener('click', async function() {
+        if (!diagnosisResult) return;
+
+        try {
+          downloadReportBtn.disabled = true;
+          downloadReportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Report...';
+
+          const patientData = {
+            name: patientName.value,
+            patientId: patientId.value,
+            age: patientAge.value,
+            testType: 'Brain MRI Analysis'
+          };
+
+          const diagnosisData = {
+            testType: 'Brain MRI Analysis',
+            prediction: diagnosisResult.prediction,
+            confidence: diagnosisResult.confidence_scores[diagnosisResult.prediction].toFixed(1),
+            visualizationImage: diagnosisResult.visualization_image,
+            metadata: 'No additional information available for this condition.'
+          };
+
+          const pdfDoc = generatePDFReport(patientData, diagnosisData);
+
+          const pdfBlob = pdfDoc.output('blob');
+
+          await uploadReportToSupabase(pdfBlob, patientData);
+
+          pdfDoc.save(`Diagno+_Brain_Report_${patientId.value}.pdf`);
+
+          alert('Report saved successfully and securely stored in the cloud.');
+        } catch (error) {
+          console.error('Error generating report:', error);
+          alert('Error generating report. Please try again.');
+        } finally {
+          downloadReportBtn.disabled = false;
+          downloadReportBtn.innerHTML = '<i class="fas fa-file-pdf"></i> Download Report';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
