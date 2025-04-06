@@ -119,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
     chatMessages.scrollTop = chatMessages.scrollHeight;
     
     try {
-      // Use the RAG API for more intelligent responses
-      const response = await fetch('http://localhost:5000/api/rag', {
+      // Updated URL to use ngrok
+      const response = await fetch('https://8ba4-34-32-158-123.ngrok-free.app/api/rag', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
