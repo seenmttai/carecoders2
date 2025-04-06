@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     try {
       // Updated URL to use ngrok
-      const response = await fetch('https://8ba4-34-32-158-123.ngrok-free.app/api/rag', {
+      const response = await fetch('https://ec58-34-32-158-123.ngrok-free.app/api/rag', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
