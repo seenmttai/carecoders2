@@ -13,6 +13,62 @@
   <link rel="stylesheet" href="hero-section.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Theme Toggle Button -->
+  <button id="themeToggle" class="theme-toggle-btn">🌙</button>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="logo-container">
+          <img src="assets/logo.png" alt="Diagno+ Logo" class="hero-logo" />
+        </div>
+        <h1>AI-Powered Medical Diagnostics</h1>
+        <p>Revolutionizing healthcare with cutting-edge artificial intelligence for accurate, efficient, and accessible diagnostic solutions.</p>
+        <div class="hero-buttons">
+          <a href="#diagnose" class="primary-btn">Get Started</a>
+          <a href="#services" class="secondary-btn">Explore Services</a>
+        </div>
+      </div>
+      <div class="hero-animation">
+        <lottie-player src="assets/Animation.json" background="transparent" speed="1" loop autoplay></lottie-player>
+      </div>
+    </div>
+  </header>
+
+  <!-- Additional content remains unchanged -->
+
+  <!-- Scripts -->
+  <script>
+    // Theme Toggle Logic
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      themeToggle.textContent = theme === 'dark' ? '🌞' : '🌙';
+    }
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      setTheme(theme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      setTheme(currentTheme);
+    });
+
+    initTheme();
+  </script>
+</body>
+</html>
 
   <!-- Chart.js Import Map -->
   <script type="importmap">
