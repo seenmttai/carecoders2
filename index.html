@@ -3,83 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Diagno+ | Advanced Medical Diagnostics</title>
+  <title>AI Health Diagnostics</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="services-autoscroll.css" />
-  <link rel="stylesheet" href="api-integration.css" />
-  <link rel="stylesheet" href="diagnostic-pages.css" />
-  <link rel="stylesheet" href="hero-section.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
-  <header class="hero-section">
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="logo-container">
-          <img src="assets/logo.png" alt="Diagno+ Logo" class="hero-logo"/>
-        </div>
-        <h1>AI-Powered Medical Diagnostics</h1>
-        <p>Revolutionizing healthcare with cutting-edge artificial intelligence for accurate, efficient, and accessible diagnostic solutions.</p>
-        <div class="hero-buttons">
-          <a href="#diagnose" class="primary-btn">Get Started</a>
-          <a href="#services" class="secondary-btn">Explore Services</a>
-        </div>
-      </div>
-      <div class="hero-animation">
-        <lottie-player src="assets/Animation.json" background="transparent" speed="1" loop autoplay></lottie-player>
-      </div>
-    </div>
+  <header>
+    <nav>
+      <img src="assets/logo.png" alt="Logo" class="logo" />
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#diagnose">Diagnostics</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav class="sticky-nav">
-    <div class="nav-container">
-      <button class="nav-button" data-section="diagnose">Advanced Diagnostics</button>
-      <button class="nav-button" data-section="services">Our Services</button>
-      <button class="nav-button" data-section="testimonials">Testimonials</button>
-      <button class="nav-button" data-section="partners">Our Partners</button>
-      <button class="nav-button" data-section="contact">Contact Us</button>
+  <section id="hero" class="hero-section">
+    <div class="hero-text">
+      <h1>AI-Driven Medical Diagnostics</h1>
+      <p>Upload your scans. Let AI assist your diagnosis journey.</p>
+      <a href="#diagnose" class="cta-button">Start Diagnosis</a>
     </div>
-  </nav>
+    <div class="hero-image">
+      <img src="assets/hero-medical.png" alt="Medical AI" />
+    </div>
+  </section>
 
-  <!-- Advanced Diagnostics Section -->
   <section id="diagnose" class="section diagnose-section">
     <h2>Advanced Diagnostic Solutions</h2>
     <p>Select a diagnostic service to begin your health assessment journey.</p>
-
-    <div class="video-preview" style="display: flex; gap: 20px; flex-wrap: wrap;">
-      <video controls width="300" height="200">
-        <source src="assets/brain.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <video controls width="300" height="200">
-        <source src="assets/lungs.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-
+    
     <div class="diagnostic-options">
-      <div class="diagnostic-card">
+      <div class="diagnostic-card" data-option="brain">
         <div class="card-icon">
-          <img src="assets/MRI 1.jpg" width="80" height="80"/>
+          <lottie-player src="assets/brain.json" background="transparent" speed="1" loop autoplay style="width: 100px; height: 100px;"></lottie-player>
         </div>
-        <h3><strong>Brain</strong> Diagnosis</h3>
+        <h3>Brain Diagnosis</h3>
         <div class="required-label">Requires MRI brain scan images</div>
         <a href="brain.html" class="diagnose-button">Start Diagnosis</a>
       </div>
-
-      <div class="diagnostic-card">
+      
+      <div class="diagnostic-card" data-option="lung">
         <div class="card-icon">
-          <img src="assets/CT1.png" width="80" height="80"/>
+          <lottie-player src="assets/lung.json" background="transparent" speed="1" loop autoplay style="width: 100px; height: 100px;"></lottie-player>
         </div>
-        <h3><strong>Lung Cancer</strong></h3>
+        <h3>Lung Cancer Diagnosis</h3>
         <div class="required-label">Requires CT scan images</div>
         <a href="lung.html" class="diagnose-button">Start Diagnosis</a>
       </div>
-
-      <div class="diagnostic-card">
+      
+      <div class="diagnostic-card" data-option="retina">
         <div class="card-icon">
-          <img src="assets/Retinal 1.jpg" width="80" height="80"/>
+          <img src="assets/Retinal 1.jpg" width="80" height="80" />
         </div>
         <h3>Diabetic Retinopathy</h3>
         <div class="required-label">Requires retinal scan images</div>
@@ -88,61 +64,13 @@
     </div>
   </section>
 
-  <!-- Our Services -->
-  <section id="services" class="section services-section">
-    <h2>Our Services</h2>
-    <p>Cutting-edge diagnostic solutions powered by AI</p>
-    <!-- Services carousel stays unchanged -->
-    <!-- ...your services content here... -->
+  <section id="about" class="section about-section">
+    <h2>About This Project</h2>
+    <p>This platform leverages cutting-edge deep learning models to detect early signs of diseases from medical scans. Designed for educational and experimental purposes, our aim is to demonstrate the potential of AI in healthcare.</p>
   </section>
 
-  <!-- Testimonials -->
-  <section id="testimonials" class="section testimonials-section">
-    <h2>Testimonials</h2>
-    <p>What our users are saying</p>
-    <div class="testimonial-container" style="display: flex; gap: 20px; flex-wrap: wrap;">
-      <div class="testimonial-card" style="flex: 1; min-width: 250px;">
-        <p>“Diagno+ helped detect my condition early with precision. I trust their tech completely.”</p>
-        <h4>- Dr. Anita Verma</h4>
-      </div>
-      <div class="testimonial-card" style="flex: 1; min-width: 250px;">
-        <p>“Fast, affordable, and accurate. Their AI-powered diagnostics saved me a lot of time.”</p>
-        <h4>- Rajiv Mehta</h4>
-      </div>
-    </div>
-  </section>
-
-  <!-- Our Partners -->
-  <section id="partners" class="section partners-section">
-    <h2>Our Partners</h2>
-    <p>Working with leading healthcare institutions worldwide</p>
-    <!-- Partners content remains the same -->
-    <!-- ...your partners content here... -->
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section contact-section">
-    <h2>Contact Us</h2>
-    <p>Get in touch with our team of experts</p>
-    <!-- Contact form stays unchanged -->
-    <!-- ...your contact content here... -->
-  </section>
-
-  <!-- Footer -->
   <footer>
-    <div class="footer-content">
-      <div class="footer-logo">
-        <img src="assets/logo.png" alt="Diagno+ Logo" width="150" />
-      </div>
-      <!-- Footer links (unchanged) -->
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2023 Diagno+. All rights reserved.</p>
-    </div>
+    <p>&copy; 2025 AI Health Diagnostics</p>
   </footer>
-
-  <script src="script.js" type="module"></script>
-  <script src="services-autoscroll.js" type="module"></script>
-  <script src="lottie-loader.js"></script>
 </body>
 </html>
