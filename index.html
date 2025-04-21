@@ -25,15 +25,26 @@
 </head>
 
 <body>
-  <!-- Theme Toggle -->
-  <div class="theme-toggle">
-    <i class="fas fa-sun"></i>
-    <label class="switch">
-      <input type="checkbox" id="theme-switch" />
-      <span class="slider round"></span>
-    </label>
-    <i class="fas fa-moon"></i>
-  </div>
+  <script>
+    // THEME TOGGLE
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      themeToggle.textContent = theme === 'dark' ? '🌞' : '🌙';
+    }
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      setTheme(theme);
+    }
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      setTheme(current);
+    });
+    initTheme();
 
   <!-- Hero Section -->
   <header class="hero-section">
