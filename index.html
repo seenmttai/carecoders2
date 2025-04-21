@@ -148,7 +148,7 @@
     <div class="diagnostic-options">
       <div class="diagnostic-card" data-option="brain">
         <div class="card-icon">
-          <lottie-player src="assets/brain.json" background="transparent" speed="1" loop autoplay style="width: 120px; height: 120px;"></lottie-player>
+          <lottie-player src="assets/brain.json" background="transparent" speed="1" loop autoplay style="width: 120px; height: 150px;"></lottie-player>
         </div>
         <h3>Brain Diagnosis</h3>
         <div class="required-label">Requires MRI brain scan images</div>
@@ -157,7 +157,7 @@
 
       <div class="diagnostic-card" data-option="lung">
         <div class="card-icon">
-          <lottie-player src="assets/lung.json" background="transparent" speed="1" loop autoplay style="width: 120px; height: 120px;"></lottie-player>
+          <lottie-player src="assets/lung.json" background="transparent" speed="1" loop autoplay style="width: 120px; height: 150px;"></lottie-player>
         </div>
         <h3>Lung Cancer</h3>
         <div class="required-label">Requires CT scan images</div>
@@ -175,27 +175,162 @@
     </div>
   </section>
 
-  <!-- Partners -->
-  <section id="partners" class="section partners-section">
+<section id="partners" class="section partners-section">
     <h2>Our Partners</h2>
     <p>Working with leading healthcare institutions worldwide</p>
-    <!-- partner cards here (unchanged for brevity) -->
+    
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-logo">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M30,50 L70,50 M50,30 L50,70" stroke="currentColor" stroke-width="4"/>
+          </svg>
+        </div>
+        <h3>MediTech Solutions</h3>
+        <p>Pioneer in medical imaging technology</p>
+      </div>
+      
+      <div class="partner-card">
+        <div class="partner-logo">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <rect x="20" y="20" width="60" height="60" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M35,50 L65,50 M50,35 L50,65" stroke="currentColor" stroke-width="4"/>
+          </svg>
+        </div>
+        <h3>Global Health Institute</h3>
+        <p>Research leader in diagnostic methodologies</p>
+      </div>
+      
+      <div class="partner-card">
+        <div class="partner-logo">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <polygon points="50,20 80,50 50,80 20,50" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>NeuroScan Innovations</h3>
+        <p>Specializing in advanced neurological diagnostics</p>
+      </div>
+      
+      <div class="partner-card">
+        <div class="partner-logo">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <path d="M20,50 C20,30 40,20 50,20 C60,20 80,30 80,50 C80,70 60,80 50,80 C40,80 20,70 20,50 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Vision Care Alliance</h3>
+        <p>Dedicated to ocular health and diagnostics</p>
+      </div>
+    </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact" class="section contact-section">
     <h2>Contact Us</h2>
     <p>Get in touch with our team of experts</p>
-    <!-- contact form content (unchanged) -->
+    
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <p>Noida, Uttar Pradesh, India</p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-phone"></i>
+          <p>9897084892</p>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <p>pranaybioinfo@gmail.com</p>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <form action="https://formsubmit.co/pranaybioinfo@gmail.com" method="POST">
+          <input type="hidden" name="_next" value="https://diagnoplus.com/thanks.html">
+          
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="general">General Inquiry</option>
+              <option value="support">Technical Support</option>
+              <option value="partnership">Partnership Opportunity</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="footer-content">
       <div class="footer-logo">
-        <img src="assets/logo.png" alt="Diagno+ Logo" width="150" />
+        <img src="assets/logo.png" alt="Diagno+ Logo" width="150">
       </div>
-      <!-- footer columns (unchanged) -->
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Diagnostic Services</h4>
+          <ul>
+            <li><a href="brain.html">Brain Diagnosis</a></li>
+            <li><a href="lung.html">Lung Cancer Screening</a></li>
+            <li><a href="retina.html">Diabetic Retinopathy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#news">News & Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#blog">Medical Blog</a></li>
+            <li><a href="#research">Research Papers</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+            <li><a href="#hipaa">HIPAA Compliance</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2023 Diagno+. All rights reserved.</p>
