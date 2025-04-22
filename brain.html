@@ -574,22 +574,39 @@
         }
       });
       
-      // Generate and download PDF report
-      downloadReportBtn.addEventListener('click', async function() {
-        if (!diagnosisResult) return;
-        
-        try {
-          downloadReportBtn.disabled = true;
-          downloadReportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Report...';
+          // Generate and download PDF report
+          downloadReportBtn.addEventListener('click', () => {
+            if (!diagnosisResult) {
+              alert("No diagnosis data available.");
+              return;
+            }
           
-          // Collect patient data
-          const patientData = {
-            name: patientName.value,
-            patientId: patientId.value,
-            age: patientAge.value,
-            testType: 'Brain MRI Analysis'
-          };
+            downloadReportBtn.disabled = true;
+            downloadReportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Report...';
           
+            const patientData = {
+              name: patientName.value,
+              patientId: patientId.value,
+              age: patientAge.value,
+            };
+          
+            const diagnosisData = {
+              testType: diagnosisResult.testType || "MRI",
+              prediction: diagnosisResult.prediction,
+              confidence: diagnosisResult.confidence_scores[diagnosisResult.prediction].toFixed(1),
+              metadata: diseaseMeta[diagnosisResult.prediction] || "No information available.",
+              visualizationImage: diagnosisResult.visualization_image || null
+            };
+          
+            const doc = generatePDFReport(patientData, diagnosisData);
+            doc.save(`${patientData.name.replace(/\s+/g, '_')}_Diagno_Report.pdf`);
+          
+            downloadReportBtn.disabled = false;
+            downloadReportBtn.innerHTML = '<i class="fas fa-download"></i> Download Report';
+          });
+          
+          
+                    
           // Collect diagnosis data
           const diagnosisData = {
             testType: 'Brain MRI Analysis',
