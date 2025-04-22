@@ -1,414 +1,613 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diagno+ | Advanced Medical Diagnostics</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="services-autoscroll.css">
-  <link rel="stylesheet" href="api-integration.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="diagnostic-pages.css">
-  <link rel="stylesheet" href="hero-section.css">
-  <style>
-    /* Brain MRI Video Styles */
-.brain-video-container {
-  position: relative;
-  width: 300px;
-  height: 200px;
-  margin: 0 auto 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Diagno+</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Light theme variables */
+            --primary-color: #1e7e61;
+            --primary-light: #2ac78c;
+            --primary-dark: #165c47;
+            --secondary-color: #05b4bb;
+            --accent-color: #ffd166;
+            --text-color: #333333;
+            --text-light: #666666;
+            --bg-color: #ffffff;
+            --bg-light: #f5f9f7;
+            --bg-dark: #e8f5f0;
+            --border-color: #dddddd;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --nav-border: rgba(30, 126, 97, 0.2);
+            --nav-shadow: rgba(0, 0, 0, 0.1);
+            
+            --card-bg: #ffffff;
+            --card-shadow: rgba(0, 0, 0, 0.08);
+            --card-border: rgba(30, 126, 97, 0.15);
+            
+            --transition-speed: 0.3s;
+            --border-radius: 12px;
+            --button-radius: 50px;
+        }
 
-.brain-video {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 8px;
-  object-fit: cover;
-  display: none; /* Hidden initially until loaded */
-  box-shadow: 0 5px 15px var(--shadow-color);
-}
+        /* Dark theme variables */
+        html[data-theme="dark"] {
+            --primary-color: #2ac78c;
+            --primary-light: #3dd69b;
+            --primary-dark: #1e7e61;
+            --secondary-color: #17d6de;
+            --accent-color: #ffda85;
+            --text-color: #e0e0e0;
+            --text-light: #a0a0a0;
+            --bg-color: #121212;
+            --bg-light: #1e1e1e;
+            --bg-dark: #0a0a0a;
+            --border-color: #2a2a2a;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            
+            --nav-bg: rgba(18, 18, 18, 0.9);
+            --nav-border: rgba(42, 199, 140, 0.2);
+            --nav-shadow: rgba(0, 0, 0, 0.25);
+            
+            --card-bg: #1e1e1e;
+            --card-shadow: rgba(0, 0, 0, 0.2);
+            --card-border: rgba(42, 199, 140, 0.2);
+        }
 
-.brain-image {
-  max-width: 300px;
-  margin: 0 auto;
-  display: block;
-  position: absolute;
-  transition: opacity 0.5s ease;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-  </style>
-  <script type="importmap">
-  {
-    "imports": {
-      "chart.js": "https://cdn.jsdelivr.net/npm/chart.js@4.3.0/+esm"
-    }
-  }
-  </script>
+        body {
+            background-color: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-container {
+            background-color: var(--nav-bg);
+            box-shadow: 0 2px 10px var(--nav-shadow);
+            border-bottom: 1px solid var(--nav-border);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            margin-left: 15px;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+            padding: 5px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 16px;
+            transition: all var(--transition-speed);
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px 40px;
+        }
+
+        .login-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 25px var(--card-shadow);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            color: var(--text-color);
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .login-header p {
+            color: var(--text-light);
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed), 
+                        background-color 0.3s ease, color 0.3s ease;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30, 126, 97, 0.2);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .remember-forgot label {
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .remember-forgot input {
+            margin-right: 5px;
+        }
+
+        .remember-forgot a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .remember-forgot a:hover {
+            color: var(--primary-light);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--button-radius);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            position: relative;
+        }
+
+        .login-button:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 15px;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .signup-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+
+        .signup-link a:hover {
+            color: var(--primary-light);
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        input.error {
+            border-color: var(--danger-color);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes spin {
+            to {
+                transform: translateY(-50%) rotate(360deg);
+            }
+        }
+
+        .success-message {
+            color: var(--success-color);
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast i {
+            font-size: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .login-container {
+                padding: 30px 20px;
+            }
+
+            .theme-toggle-btn {
+                margin-left: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="theme-toggle">
-    <i class="fas fa-sun"></i>
-    <label class="switch">
-      <input type="checkbox" id="theme-switch">
-      <span class="slider round"></span>
-    </label>
-    <i class="fas fa-moon"></i>
-  </div>
-
-  <!-- New Hero Section with Lottie Animation -->
-  <header class="hero-section">
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="logo-container">
-          <img src="assets/logo.png" alt="Diagno+ Logo" class="hero-logo">
-        </div>
-        <h1>AI-Powered Medical Diagnostics</h1>
-        <p>Revolutionizing healthcare with cutting-edge artificial intelligence for accurate, efficient, and accessible diagnostic solutions.</p>
-        <div class="hero-buttons">
-          <a href="#diagnose" class="primary-btn">Get Started</a>
-          <a href="#services" class="secondary-btn">Explore Services</a>
-        </div>
-      </div>
-      <div class="hero-animation">
-        <lottie-player src="assets/Animation.json" background="transparent" speed="1" loop autoplay></lottie-player>
-      </div>
-    </div>
-  </header>
-
-  <nav class="sticky-nav">
     <div class="nav-container">
-      <button class="nav-button" data-section="diagnose">Diagnose</button>
-      <button class="nav-button" data-section="testimonials">Testimonials</button>
-      <button class="nav-button" data-section="services">Our Services</button>
-      <button class="nav-button" data-section="partners">Our Partners</button>
-      <button class="nav-button" data-section="contact">Contact Us</button>
+        <nav class="navbar">
+            <a href="index.html" class="navbar-brand">
+                <div class="logo-container">
+                    <img src="assets/logo.png" alt="Diagno+ Logo" class="logo-image">
+                </div>
+            </a>
+            <div style="display: flex; align-items: center;">
+                <button id="themeToggleBtn" class="theme-toggle-btn">
+                    <i id="themeIcon" class="fas fa-moon"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
-  </nav>
 
-  <div class="chat-button">
-    <button id="chat-btn">
-      <i class="fas fa-comment-medical"></i>
-      <span>Chat with us</span>
-    </button>
-  </div>
+    <main>
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Welcome Back</h1>
+                <p>Please enter your details to sign in</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                    <div class="error-message" id="emailError">Please enter a valid email address</div>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                    <div class="error-message" id="passwordError">Password must be at least 6 characters</div>
+                </div>
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox" id="remember" name="remember">
+                        Remember me
+                    </label>
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button type="submit" class="login-button">
+                    Sign In
+                    <div class="spinner" id="loginSpinner"></div>
+                </button>
+                <div class="success-message" id="successMessage">Login successful!</div>
+            </form>
+            <div class="signup-link">
+                Don't have an account? <a href="signup.html">Sign up</a>
+            </div>
+        </div>
+    </main>
 
-  <div class="chat-container" id="chat-container">
-    <div class="chat-header">
-      <h3>Diagno+ Assistant</h3>
-      <button id="close-chat">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    <div class="chat-messages" id="chat-messages">
-      <div class="message bot">
-        <div class="message-content">
-          <p>Hello! I'm the Diagno+ AI assistant. How can I help you with your medical diagnostics needs today?</p>
-        </div>
-      </div>
-    </div>
-    <div class="chat-input">
-      <input type="text" id="user-input" placeholder="Type your message...">
-      <button id="send-message">
-        <i class="fas fa-paper-plane"></i>
-      </button>
-    </div>
-  </div>
-  
-  <section id="services" class="section services-section">
-    <h2>Our Services</h2>
-    <p>Cutting-edge diagnostic solutions powered by AI</p>
-    
-    <div class="services-carousel">
-      <div class="service-slide">
-        <div class="service-card">
-          <i class="fas fa-desktop"></i>
-          <h3>Dedicated Portal</h3>
-          <p>User-friendly dashboard designed for effortless navigation and seamless diagnostics.</p>
-        </div>
-      </div>
-      
-      <div class="service-slide">
-        <div class="service-card">
-          <i class="fas fa-bolt"></i>
-          <h3>Fast and High Accuracy</h3>
-          <p>AI-powered engine ensures rapid results with clinically validated precision.</p>
-        </div>
-      </div>
-      
-      <div class="service-slide">
-        <div class="service-card">
-          <i class="fas fa-coins"></i>
-          <h3>Inexpensive and Reliable Diagnosis</h3>
-          <p>Affordable solutions without compromising on quality or reliability.</p>
-        </div>
-      </div>
-      
-      <div class="service-slide">
-        <div class="service-card">
-          <i class="fas fa-file-medical-alt"></i>
-          <h3>Instant Report Generation</h3>
-          <p>Get comprehensive diagnostic reports within seconds.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="carousel-controls">
-      <button class="prev-btn service-prev">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <div class="carousel-dots service-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-      <button class="next-btn service-next">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
-  </section>
+    <footer class="footer">
+        <p>© 2025 Diagno+. All rights reserved.</p>
+    </footer>
 
-  <section id="diagnose" class="section diagnose-section">
-    <h2>Advanced Diagnostic Solutions</h2>
-    <p>Select a diagnostic service to begin your health assessment journey.</p>
-    
-    <div class="diagnostic-options">
-      <div class="diagnostic-card" data-option="brain">
-        <div class="card-icon">
-          <img src="assets/MRI 1.jpg" width="80" height="80">
-        </div>
-        <h3><strong>Brain</strong> Diagnosis</h3>
-        <div class="required-label">Requires MRI brain scan images</div>
-        <a href="brain.html" class="diagnose-button">Start Diagnosis</a>
-      </div>
-      
-      <div class="diagnostic-card" data-option="lung">
-        <div class="card-icon">
-          <img src="assets/CT1.png" width="80" height="80">
-        </div>
-        <h3><strong>Lung Cancer</h3>
-        <div class="required-label">Requires CT scan images</div>
-        <a href="lung.html" class="diagnose-button">Start Diagnosis</a>
-      </div>
-      
-      <div class="diagnostic-card" data-option="retina">
-        <div class="card-icon">
-          <img src="assets/Retinal 1.jpg"  width="80" height="80">
-        </div>
-        <h3>Diabetic Retinopathy</h3>
-        <div class="required-label">Requires retinal scan images</div>
-        <a href="retina.html" class="diagnose-button">Start Diagnosis</a>
-      </div>
+    <div class="toast" id="toast">
+        <i>✓</i>
+        <span id="toastMessage">Successfully logged in!</span>
     </div>
-  </section>
 
-  <section id="partners" class="section partners-section">
-    <h2>Our Partners</h2>
-    <p>Working with leading healthcare institutions worldwide</p>
-    
-    <div class="partners-grid">
-      <div class="partner-card">
-        <div class="partner-logo">
-          <svg viewBox="0 0 100 100" width="100" height="100">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="M30,50 L70,50 M50,30 L50,70" stroke="currentColor" stroke-width="4"/>
-          </svg>
-        </div>
-        <h3>MediTech Solutions</h3>
-        <p>Pioneer in medical imaging technology</p>
-      </div>
-      
-      <div class="partner-card">
-        <div class="partner-logo">
-          <svg viewBox="0 0 100 100" width="100" height="100">
-            <rect x="20" y="20" width="60" height="60" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="M35,50 L65,50 M50,35 L50,65" stroke="currentColor" stroke-width="4"/>
-          </svg>
-        </div>
-        <h3>Global Health Institute</h3>
-        <p>Research leader in diagnostic methodologies</p>
-      </div>
-      
-      <div class="partner-card">
-        <div class="partner-logo">
-          <svg viewBox="0 0 100 100" width="100" height="100">
-            <polygon points="50,20 80,50 50,80 20,50" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle cx="50" cy="50" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </div>
-        <h3>NeuroScan Innovations</h3>
-        <p>Specializing in advanced neurological diagnostics</p>
-      </div>
-      
-      <div class="partner-card">
-        <div class="partner-logo">
-          <svg viewBox="0 0 100 100" width="100" height="100">
-            <path d="M20,50 C20,30 40,20 50,20 C60,20 80,30 80,50 C80,70 60,80 50,80 C40,80 20,70 20,50 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-            <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
-          </svg>
-        </div>
-        <h3>Vision Care Alliance</h3>
-        <p>Dedicated to ocular health and diagnostics</p>
-      </div>
-    </div>
-  </section>
+    <script>
+        // Theme toggle functionality with single button
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            // Check if user previously set a theme preference
+            const savedTheme = localStorage.getItem('diagnoTheme');
+            
+            // Function to update theme
+            function updateTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('diagnoTheme', theme);
+                // Update icon based on current theme
+                themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+            
+            // Initialize theme
+            if (savedTheme) {
+                updateTheme(savedTheme);
+            } else {
+                // Check for system preference
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                updateTheme(prefersDark ? 'dark' : 'light');
+            }
+            
+            // Theme toggle button event listener
+            themeToggleBtn.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                updateTheme(newTheme);
+            });
+                
+            // Check for saved email from previous login
+            const rememberedEmail = localStorage.getItem('rememberedEmail');
+            const rememberedUser = localStorage.getItem('rememberUser');
+            
+            if (rememberedEmail && rememberedUser === 'true') {
+                document.getElementById('email').value = rememberedEmail;
+                document.getElementById('remember').checked = true;
+            }
 
-  <section id="contact" class="section contact-section">
-    <h2>Contact Us</h2>
-    <p>Get in touch with our team of experts</p>
-    
-    <div class="contact-container">
-      <div class="contact-info">
-        <div class="info-item">
-          <i class="fas fa-map-marker-alt"></i>
-          <p>Noida, Uttar Pradesh, India</p>
-        </div>
-        <div class="info-item">
-          <i class="fas fa-phone"></i>
-          <p>9897084892</p>
-        </div>
-        <div class="info-item">
-          <i class="fas fa-envelope"></i>
-          <p>pranaybioinfo@gmail.com</p>
-        </div>
-        <div class="social-links">
-          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-      
-      <div class="contact-form">
-        <form action="https://formsubmit.co/pranaybioinfo@gmail.com" method="POST">
-          <input type="hidden" name="_next" value="https://diagnoplus.com/thanks.html">
-          
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone">
-          </div>
-          
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <select id="subject" name="subject">
-              <option value="general">General Inquiry</option>
-              <option value="support">Technical Support</option>
-              <option value="partnership">Partnership Opportunity</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
+            // If we have a stored session, check if we should redirect to index.html
+            const isRedirected = new URLSearchParams(window.location.search).get('redirected');
+            const userLoggedIn = sessionStorage.getItem('userLoggedIn');
+            
+            if (userLoggedIn === 'true' && !isRedirected) {
+                // User is already logged in, redirect to index.html
+                showToast('You are already logged in. Redirecting...');
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 2000);
+            }
+        });
 
-  <footer>
-    <div class="footer-content">
-      <div class="footer-logo">
-        <img src="assets/logo.png" alt="Diagno+ Logo" width="150">
-      </div>
-      <div class="footer-links">
-        <div class="footer-column">
-          <h4>Diagnostic Services</h4>
-          <ul>
-            <li><a href="brain.html">Brain Diagnosis</a></li>
-            <li><a href="lung.html">Lung Cancer Screening</a></li>
-            <li><a href="retina.html">Diabetic Retinopathy</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#careers">Careers</a></li>
-            <li><a href="#news">News & Events</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="#blog">Medical Blog</a></li>
-            <li><a href="#research">Research Papers</a></li>
-            <li><a href="#faq">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="#privacy">Privacy Policy</a></li>
-            <li><a href="#terms">Terms of Service</a></li>
-            <li><a href="#hipaa">HIPAA Compliance</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2023 Diagno+. All rights reserved.</p>
-    </div>
-  </footer>
+        // Form validation and submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-  <script src="script.js" type="module"></script>
-  <script src="services-autoscroll.js" type="module"></script>
-  <script src="lottie-loader.js"></script>
-  <script>
-    // Brain MRI video loader with fallback to static image
-document.addEventListener('DOMContentLoaded', function() {
-  const videoContainer = document.getElementById('brain-video-container');
-  if (!videoContainer) return;
-  
-  // Create the video element
-  const video = document.createElement('video');
-  video.id = 'brain-mri-video';
-  video.className = 'brain-video';
-  video.autoplay = true;
-  video.loop = true;
-  video.muted = true;
-  video.playsInline = true;
-  video.src = 'https://carecoder.pages.dev/assets/mri.mp4';
-  
-  // Add loading event handlers
-  video.addEventListener('loadeddata', function() {
-    // Video is loaded, hide the fallback image
-    const fallbackImage = videoContainer.querySelector('.brain-image');
-    if (fallbackImage) {
-      fallbackImage.style.display = 'none';
-    }
-    video.style.display = 'block';
-  });
-  
-  video.addEventListener('error', function() {
-    console.error('Error loading brain MRI video');
-    // Keep the fallback image visible
-    const fallbackImage = videoContainer.querySelector('.brain-image');
-    if (fallbackImage) {
-      fallbackImage.style.display = 'block';
-    }
-  });
-  
-  // Add the video to the container after the SVG
-  videoContainer.appendChild(video);
-});
-  </script>
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const rememberMe = document.getElementById('remember').checked;
+            let isValid = true;
+
+            // Reset error styles
+            document.getElementById('email').classList.remove('error');
+            document.getElementById('password').classList.remove('error');
+            document.getElementById('emailError').style.display = 'none';
+            document.getElementById('passwordError').style.display = 'none';
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('email').classList.add('error');
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (password.length < 6) {
+                document.getElementById('password').classList.add('error');
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            const storedUser = JSON.parse(localStorage.getItem('userData'));
+
+            if (!storedUser || storedUser.email !== email || storedUser.password !== password) {
+                showToast("Invalid email or password");
+                return;
+            }
+
+            // Show loading spinner
+            document.getElementById('loginSpinner').style.display = 'block';
+
+            setTimeout(function() {
+                document.getElementById('loginSpinner').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+
+                sessionStorage.setItem('userLoggedIn', 'true');
+                sessionStorage.setItem('userEmail', email);
+                sessionStorage.setItem('loginTime', new Date().toString());
+
+                if (rememberMe) {
+                    localStorage.setItem('rememberedEmail', email);
+                    localStorage.setItem('rememberUser', 'true');
+                } else {
+                    localStorage.removeItem('rememberedEmail');
+                    localStorage.removeItem('rememberUser');
+                }
+
+                showToast('Login successful! Redirecting...');
+                setTimeout(() => window.location.href = 'home.html', 1500);
+            }, 1000);
+        });
+
+        // Toast notification function
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
