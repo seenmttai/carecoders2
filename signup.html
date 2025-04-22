@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Diagno+</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Light theme variables */
+            --primary-color: #1e7e61;
+            --primary-light: #2ac78c;
+            --primary-dark: #165c47;
+            --secondary-color: #05b4bb;
+            --accent-color: #ffd166;
+            --text-color: #333333;
+            --text-light: #666666;
+            --bg-color: #ffffff;
+            --bg-light: #f5f9f7;
+            --bg-dark: #e8f5f0;
+            --border-color: #dddddd;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --nav-border: rgba(30, 126, 97, 0.2);
+            --nav-shadow: rgba(0, 0, 0, 0.1);
+            
+            --card-bg: #ffffff;
+            --card-shadow: rgba(0, 0, 0, 0.08);
+            --card-border: rgba(30, 126, 97, 0.15);
+            
+            --transition-speed: 0.3s;
+            --border-radius: 12px;
+            --button-radius: 50px;
+        }
+
+        /* Dark theme variables */
+        html[data-theme="dark"] {
+            --primary-color: #2ac78c;
+            --primary-light: #3dd69b;
+            --primary-dark: #1e7e61;
+            --secondary-color: #17d6de;
+            --accent-color: #ffda85;
+            --text-color: #e0e0e0;
+            --text-light: #a0a0a0;
+            --bg-color: #121212;
+            --bg-light: #1e1e1e;
+            --bg-dark: #0a0a0a;
+            --border-color: #2a2a2a;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            
+            --nav-bg: rgba(18, 18, 18, 0.9);
+            --nav-border: rgba(42, 199, 140, 0.2);
+            --nav-shadow: rgba(0, 0, 0, 0.25);
+            
+            --card-bg: #1e1e1e;
+            --card-shadow: rgba(0, 0, 0, 0.2);
+            --card-border: rgba(42, 199, 140, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-container {
+            background-color: var(--nav-bg);
+            box-shadow: 0 2px 10px var(--nav-shadow);
+            border-bottom: 1px solid var(--nav-border);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-container {
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 100%;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 16px;
+            transition: all var(--transition-speed);
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px 40px;
+        }
+
+        .signup-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 25px var(--card-shadow);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            border: 1px solid var(--card-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .signup-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .signup-header h1 {
+            color: var(--text-color);
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .signup-header p {
+            color: var(--text-light);
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed),
+                        background-color 0.3s ease, color 0.3s ease;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30, 126, 97, 0.2);
+        }
+
+        .name-fields {
+            display: flex;
+            gap: 15px;
+        }
+
+        .name-fields .input-group {
+            flex: 1;
+        }
+
+        .terms-privacy {
+            display: flex;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: var(--text-color);
+            align-items: flex-start;
+            transition: color 0.3s ease;
+        }
+
+        .terms-privacy input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        .terms-privacy a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .terms-privacy a:hover {
+            color: var(--primary-light);
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--button-radius);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            position: relative;
+        }
+
+        .signup-button:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 15px;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .login-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+
+        .login-link a:hover {
+            color: var(--primary-light);
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        input.error {
+            border-color: var(--danger-color);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes spin {
+            to {
+                transform: translateY(-50%) rotate(360deg);
+            }
+        }
+
+        .success-message {
+            color: var(--success-color);
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--success-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast i {
+            font-size: 20px;
+        }
+
+        /* Theme toggle button styles */
+        .theme-toggle-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: rgba(var(--primary-color-rgb), 0.1);
+            transform: translateY(-2px);
+        }
+
+        html[data-theme="dark"] .fa-sun {
+            display: block;
+        }
+
+        html[data-theme="dark"] .fa-moon {
+            display: none;
+        }
+
+        html[data-theme="light"] .fa-sun {
+            display: none;
+        }
+
+        html[data-theme="light"] .fa-moon {
+            display: block;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .modal-body {
+            margin-bottom: 25px;
+            color: var(--text-color);
+            line-height: 1.5;
+            transition: color 0.3s ease;
+        }
+
+        .modal-btn {
+            padding: 10px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--button-radius);
+            font-size: 16px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .modal-btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .signup-container {
+                padding: 30px 20px;
+            }
+
+            .theme-toggle-btn {
+                position: absolute;
+                top: 15px;
+                right: 20px;
+            }
+
+            .name-fields {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <nav class="navbar">
+            <a href="index.html" class="navbar-brand">
+                <div class="logo-container">
+                    <img src="diagno-plus-logo.png" alt="Diagno+ Logo" class="logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 300 100\'><path d=\'M133 75 Q 180 10, 230 75\' stroke=\'%2300c853\' stroke-width=\'10\' fill=\'none\'/><path d=\'M125 75 L 238 75\' stroke=\'%2300c853\' stroke-width=\'10\' fill=\'none\'/></svg>';">
+                </div>
+            </a>
+            <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="login.html">Login</a></li>
+                <li><a href="#" class="active">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <div class="signup-container">
+            <div class="signup-header">
+                <h1>Create Account</h1>
+                <p>Fill in your details to get started</p>
+            </div>
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name">
+                    <div class="error-message" id="firstNameError">First name is required</div>
+                </div>
+                <div class="input-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name">
+                    <div class="error-message" id="lastNameError">Last name is required</div>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                    <div class="error-message" id="emailError">Please enter a valid email address</div>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password">
+                    <div class="error-message" id="passwordError">Password must be at least 8 characters with letters and numbers</div>
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password">
+                    <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
+                </div>
+                <div class="terms-privacy">
+                    <input type="checkbox" id="agreeTerms" name="agreeTerms">
+                    <label for="agreeTerms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+                <div class="error-message" id="termsError">You must agree to the terms to continue</div>
+                <button type="submit" class="signup-button">
+                    Create Account
+                    <div class="spinner" id="signupSpinner"></div>
+                </button>
+                <div class="success-message" id="successMessage">Account created successfully!</div>
+            </form>
+            <div class="login-link">
+                Already have an account? <a href="login.html">Log in</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Diagno+. All rights reserved.</p>
+    </footer>
+
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Success message</span>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">Account Created Successfully!</div>
+            <div class="modal-body">
+                Your account has been created successfully. You can now log in with your email and password.
+            </div>
+            <button id="modalOkBtn" class="modal-btn">Log In Now</button>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            
+            // Check if user previously set a theme preference
+            const savedTheme = localStorage.getItem('diagnoTheme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else {
+                // Check for system preference
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (prefersDark) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            }
+            
+            // Theme toggle button event listener
+            themeToggleBtn.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('diagnoTheme', newTheme);
+            });
+        });
+
+        // Form validation and submission
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+            
+            let isValid = true;
+            
+            // Reset all errors
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(el => el.style.display = 'none');
+            
+            const inputElements = document.querySelectorAll('input');
+            inputElements.forEach(el => el.classList.remove('error'));
+            
+            // Validate first name
+            if (firstName.trim() === '') {
+                document.getElementById('firstName').classList.add('error');
+                document.getElementById('firstNameError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate last name
+            if (lastName.trim() === '') {
+                document.getElementById('lastName').classList.add('error');
+                document.getElementById('lastNameError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('email').classList.add('error');
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate password
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById('password').classList.add('error');
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate confirm password
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPassword').classList.add('error');
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate terms acceptance
+            if (!agreeTerms) {
+                document.getElementById('termsError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Show loading spinner
+                document.getElementById('signupSpinner').style.display = 'block';
+                
+                // Simulate API call with setTimeout
+                setTimeout(function() {
+                    // Hide loading spinner
+                    document.getElementById('signupSpinner').style.display = 'none';
+                    
+                    // Store user credentials in localStorage
+                    // In a real application, this would be done securely on the server
+                    const users = JSON.parse(localStorage.getItem('diagnoUsers') || '[]');
+                    
+                    // Check if email already exists
+                    const existingUser = users.find(user => user.email === email);
+                    if (existingUser) {
+                        document.getElementById('email').classList.add('error');
+                        document.getElementById('emailError').textContent = "Email already registered";
+                        document.getElementById('emailError').style.display = 'block';
+                        return;
+                    }
+                    
+                    // Add new user
+                    users.push({
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        password: password, // In a real app, this would be hashed
+                        createdAt: new Date().toISOString()
+                    });
+                    
+                    // Save to localStorage
+                    localStorage.setItem('diagnoUsers', JSON.stringify(users));
+                    localStorage.setItem('userData', JSON.stringify({
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        password: password
+                    }));
+                    
+                    // Show success message
+                    document.getElementById('successMessage').style.display = 'block';
+                    showToast('Account created successfully!');
+                    
+                    // Show success modal
+                    document.getElementById('successModal').style.display = 'flex';
+                    
+                }, 1500); // Simulate 1.5s API delay
+            }
+        });
+
+        // Modal button event
+        document.getElementById('modalOkBtn').addEventListener('click', function() {
+            // Redirect to login page
+            window.location.href = 'login.html';
+        });
+
+        // Toast notification function
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
